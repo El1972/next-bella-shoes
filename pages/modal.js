@@ -2,10 +2,21 @@ import styles from '../styles/Home.module.css'
 import Link from 'next/link';
 import { BsHandbag } from "react-icons/bs";
 import { FaHome } from 'react-icons/fa';
+import { useAddToCartContext } from '../contexts/AddToCartContext';
+import { useState } from 'react';
 
 
 
-const Modal = () => {
+
+const Modal = (props) => {
+
+    const { sizes, addToCart } = useAddToCartContext();
+
+    const [setSize, setSetSize] = useState(sizes)
+
+    const { id, images, names, count, prices, stock, amount } = props
+
+
 
     return (
 
@@ -26,7 +37,7 @@ const Modal = () => {
                                     <div className={styles['inner-buttons-container']}>
 
                                         <div className={styles['modal-single-info-size-container']}>
-                                            <Link to={'.'}
+                                            <Link href={'.'}
                                                 className={styles['modal-single-info-size-button']}
                                             >
                                                 <p className={styles['modal-single-info-size']}>
@@ -36,7 +47,7 @@ const Modal = () => {
                                         </div>
 
                                         <div className={styles['modal-single-info-cart-container']}>
-                                            <Link to={'/products'} className={styles['modal-single-info-cart-button']}
+                                            <Link href={'/products'} className={styles['modal-single-info-cart-button']}
                                                 onClick={() => addToCart(id, images, names, count, prices, stock, amount, setSize)}
                                             >
                                                 <p className={styles['modal-single-info-cart']}>
@@ -68,7 +79,7 @@ const Modal = () => {
                                         {sizes.map((s, index) => {
                                             return (
                                                 <button key={index}
-                                                    className={`size-button ${s === setSize ? ' active' : null}`}
+                                                    className={`${styles['size-button']} ${s === setSize ? `${styles['active']}` : null}`}
                                                     onClick={() => setSetSize(s)}
                                                 >
                                                     {s.us}
@@ -101,7 +112,7 @@ const Modal = () => {
                                 <div className={`${styles['what-go-home-container']} ${styles['clearfix']}`}>
                                     <div className={styles['inner-what-go-home-container']}>
 
-                                        <Link to={'/'} className={styles['go-home-sentence-button']}>
+                                        <Link href={'/'} className={styles['go-home-sentence-button']}>
                                             <p className={styles['go-home-sentence']}>
                                                 <FaHome className={styles['go-home']} />
                                                 Go Back

@@ -96,19 +96,19 @@ export const AddToCartProvider = ({ children }) => {
         return { state, dispatch }
     }, [state, dispatch])
 
-    useEffect(() => {
-        const item = (JSON.parse(localStorage.getItem('cart')))
-        if (item) {
-            dispatch({
-                type: 'SET_CART',
-                payload: (JSON.parse(localStorage.getItem('cart')))
-            })
-        }
-    }, [])
+    // useEffect(() => {
+    //     const item = (JSON.parse(localStorage.getItem('cart')))
+    //     if (item) {
+    //         dispatch({
+    //             type: 'SET_CART',
+    //             payload: (JSON.parse(localStorage.getItem('cart')))
+    //         })
+    //     }
+    // }, [])
 
-    useEffect(() => {
-        localStorage.setItem('cart', JSON.stringify(state))
-    }, [state])
+    // useEffect(() => {
+    //     localStorage.setItem('cart', JSON.stringify(state))
+    // }, [state])
 
 
     // useEffect(() => {

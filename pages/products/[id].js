@@ -1,14 +1,29 @@
-import styles from '../styles/Home.module.css'
+import styles from '../../styles/Home.module.css'
 import { FaChevronDown } from 'react-icons/fa';
 import Link from 'next/link';
-import { Heart, Message, Pencil, QuestionIcon } from '../../components';
+import Heart from '../../components/Heart';
+import Pencil from '../../components/Pencil';
+import QuestionIcon from '../../components/QuestionIcon';
+import Message from '../../components/Message';
 import { BsHandbag } from "react-icons/bs";
 import Modal from '../modal';
+import { useRouter } from 'next/router';
+import { useState } from 'react';
 
 
 
 
-const SingleProduct = () => {
+const SingleProduct = ({ one_shoe }) => {
+
+    const [modalOpen, setModalOpen] = useState(false)
+
+
+    // const router = useRouter();
+    // const single_item = router.query.single_item
+
+    const { id, names, images, prices,
+        crossed_price, count, stock, amount,
+        descriptions, one, two, three, four, five, six } = one_shoe
 
     return (
 
@@ -33,7 +48,7 @@ const SingleProduct = () => {
                     </div>
 
                     <div className={styles['single-image-top-line-container']}>
-                        <Link to={'/'} className={styles['back-to-list-button']}>
+                        <Link href={'/'} className={styles['back-to-list-button']}>
                             <FaChevronDown className={styles['chevron-left']} />
                             <p className={styles['single-image-top-line']}>Back To List</p>
                             <div className={styles['single-image-top-line-itself']}></div>
@@ -64,7 +79,7 @@ const SingleProduct = () => {
 
 
                                                 <div className={styles['single-info-cart-container']}>
-                                                    <Link to={'.'} onClick={() => setModalOpen(true)}>
+                                                    <Link href={'.'} onClick={() => setModalOpen(true)}>
                                                         <p className={styles['single-info-cart']}>
                                                             <BsHandbag className={styles['cart-icon']} />Add To Cart
                                                         </p>
@@ -72,7 +87,7 @@ const SingleProduct = () => {
                                                 </div>
 
                                                 {/* <div className="single-info-size-container"> */}
-                                                <div className={styles['single-info-size-button']}
+                                                <Link href='#' className={styles['single-info-size-button']}
                                                     onClick={() => setModalOpen(true)}>
                                                     <p className={styles['single-info-size']}>
                                                         Size
@@ -86,7 +101,7 @@ const SingleProduct = () => {
                                                         stock={stock}
                                                         amount={amount}
                                                     />}
-                                                </div>
+                                                </Link>
                                                 {/* </div> */}
 
 
@@ -160,3 +175,44 @@ const SingleProduct = () => {
 }
 
 export default SingleProduct
+
+
+
+export const getStaticProps = async (context) => {
+
+    const id = context.params.id
+
+    const response = await fetch(`https://mybellshoes.com/single_shoe.php/${id}`)
+    const men_shoe = await response.json()
+
+    return {
+        props: {
+            one_shoe: men_shoe
+        }
+    }
+
+}
+
+
+
+export const getStaticPaths = async () => {
+    const get_paths = await fetch('https://mybellshoes.com/women.php')
+    const path = await get_paths.json()
+
+    const paths = path.map((p) => {
+        return {
+            params: {
+                id: p.id.toString()
+            }
+        }
+    })
+    return {
+        paths: paths,
+        fallback: false
+    }
+}
+
+
+
+
+
