@@ -1,7 +1,8 @@
-import { Link } from 'react-router-dom';
-import ShoppingBagComponent from './ShoppingBagComponent';
+import styles from '../styles/Home.module.css'
+import ShoppingBagComponent from '../components/ShoppingBagComponent'
 import { FaHome, FaChevronDown, FaCartArrowDown } from 'react-icons/fa';
-import { useAddToCartContext } from '../context/add_to_cart_context';
+import Link from 'next/link';
+import { useAddToCartContext } from '../contexts/AddToCartContext';
 
 
 
@@ -12,36 +13,36 @@ const Header = () => {
     return (
 
         <div>
-            <div className="login-cart-container clearfix">
-                <div className="inner-login-cart-container">
+            <div className={`${styles['login-cart-container']} ${styles['clearfix']}`}>
+                <div className={styles['inner-login-cart-container']}>
                     <Link href={'./products'}>
-                        <ShoppingBagComponent className="shopping-bag-component" />
-                        <p className='cart-number'>{both_carts_items_total}</p>
+                        <ShoppingBagComponent className={styles['shopping-bag-component']} />
+                        <p className={styles['cart-number']}>{both_carts_items_total}</p>
                     </Link>
                 </div>
             </div>
-            <div className="brandname-container">
-                <div className="inner-brandname-container">
+            <div className={styles['brandname-container']}>
+                <div className={styles['inner-brandname-container']}>
                     <Link href={'./'}>
-                        <h1 className='brandname-header-itself'>Bella</h1>
+                        <h1 className={styles['brandname-header-itself']}>Bella</h1>
                     </Link>
                 </div>
-                <div className="brandname-sentence">
-                    <p className='brandname-sentence-edit'>
+                <div className={styles['brandname-sentence']}>
+                    <p className={styles['brandname-sentence-edit']}>
                         One and Only</p>
                 </div>
 
             </div>
-            <div className="width-header">
-                <div className="structure-header">
-                    <div className="lines-header">
-                        <div className="properties-header">
-                            <ul className='header-links'>
-                                <li className='nav-links hommer'><Link href='/' className='react-link-home'><i className='home-logo'><FaHome /></i></Link></li>
-                                <li className='nav-links first'><Link href='/' className='react-link-home'>Men&apos;s Shoes<FaChevronDown className='chevron' /></Link></li>
-                                <li className='nav-links'><Link href='/women' className='react-link'>Women&apos;s Shoes<FaChevronDown className='chevron' /></Link></li>
-                                <li className='nav-links'><Link href='/about' className='react-link'>About Us</Link></li>
-                                <li className='nav-links last'><Link href='/contact' className='react-link'>Contact Us</Link></li>
+            <div className={styles['width-header']}>
+                <div className={styles['structure-header']}>
+                    <div className={styles['lines-header']}>
+                        <div className={styles['properties-header']}>
+                            <ul className={styles['header-links']}>
+                                <li className={styles['nav-links hommer']}><Link href='/' className={styles['react-link-home']}><i className={styles['home-logo']}><FaHome /></i></Link></li>
+                                <li className={styles['nav-links first']}><Link href='/' className={styles['react-link-home']}>Men&apos;s Shoes<FaChevronDown className={styles['chevron']} /></Link></li>
+                                <li className={styles['nav-links']}><Link href='/women' className={styles['react-link']}>Women&apos;s Shoes<FaChevronDown className={styles['chevron']} /></Link></li>
+                                <li className={styles['nav-links']}><Link href='/about' className={styles['react-link']}>About Us</Link></li>
+                                <li className={`${styles['nav-links']} ${styles['last']}`}><Link href='/contact' className={styles['react-link']}>Contact Us</Link></li>
                             </ul>
                         </div>
                     </div>

@@ -1,20 +1,19 @@
-import { useAddToCartContext } from "../contexts/AddToCartContext"
+
 
 
 const cart_reducer = (state, action) => {
-
 
 
     if (action.type === 'FETCH_SIZES') {
         return { ...state, sizes: [...action.payload] }
     }
 
-    if (action.type === 'MAN_CART') {
+    if (action.type === 'SET_CART') {
         return { ...state, cart: action.payload }
     }
 
-    if (action.type === 'WOMAN_CART') {
-        return { ...state, woman_cart: action.payload }
+    if (action.type === 'SET_WOMEN_CART') {
+        return { ...state, women_cart: action.payload }
     }
 
 
@@ -30,9 +29,9 @@ const cart_reducer = (state, action) => {
 
 
     if (action.type === 'ADD_TO_CART') {
-        const { id, images, names, count, prices, stock, amount, sizes, cart } = action.payload; // destructuring from: action.payload
 
-        // console.log(id);
+        const { id, images, names, count, prices, stock, amount, sizes } = action.payload; // destructuring from: action.payload
+
 
         let { us, uk, eu } = sizes
 
@@ -45,7 +44,9 @@ const cart_reducer = (state, action) => {
 
         let [shoeSize] = result
 
-        const tempObj = state.cart.find((c) => {
+        console.log(state);
+
+        let tempObj = state.cart.find((c) => {
             return c.id === id
         })
         if (tempObj) {
@@ -86,7 +87,7 @@ const cart_reducer = (state, action) => {
 
 
 
-    if (action.type === 'WOMAN_ADD_TO_CART') {
+    if (action.type === 'WOMEN_ADD_TO_CART') {
         const { id, images, names, count, prices, stock, amount, size } = action.payload; // destructuring from: action.payload
 
         console.log(id, images, names, count, prices, stock, amount, size);
@@ -102,12 +103,12 @@ const cart_reducer = (state, action) => {
 
         let [shoeSize] = result
 
-        const tempObj = state.woman_cart.find((c) => {
+        const tempObj = state.women_cart.find((c) => {
             return c.id === id
         })
 
         if (tempObj) {
-            const tempUnits = state.woman_cart.map((c) => {
+            const tempUnits = state.women_cart.map((c) => {
                 if (c.id === id) {
                     let renewedCount = parseInt(c.count) + parseInt(count)
                     if (renewedCount > c.stock) {
@@ -118,7 +119,7 @@ const cart_reducer = (state, action) => {
                     return c
                 }
             })
-            return { ...state, woman_cart: tempUnits }
+            return { ...state, women_cart: tempUnits }
         } else {
             const newObj = {
                 id: id,
@@ -131,7 +132,7 @@ const cart_reducer = (state, action) => {
                 amount: parseInt(amount),
                 max: parseInt(stock)
             }
-            return { ...state, woman_cart: [...state.woman_cart, newObj] }
+            return { ...state, women_cart: [...state.women_cart, newObj] }
         }
 
     }
@@ -149,13 +150,13 @@ const cart_reducer = (state, action) => {
     }
 
 
-    if (action.type === 'DELETE_WOMAN_ITEM') {
+    if (action.type === 'DELETE_WOMEN_ITEM') {
         // const { id } = action.payload - if you pass it as an object from context you'll
         // have to destructure it
-        const womanCart = state.woman_cart.filter((s) => {
+        const womenCart = state.women_cart.filter((s) => {
             return s.id !== action.payload
         })
-        return { ...state, woman_cart: [...womanCart] }
+        return { ...state, women_cart: [...womenCart] }
     }
 
 
@@ -209,7 +210,7 @@ const cart_reducer = (state, action) => {
     if (action.type === 'ADJUST_WOMEN_CART') {
         const { id, value } = action.payload
 
-        const tempItem = state.woman_cart.map((shoe) => {
+        const tempItem = state.women_cart.map((shoe) => {
 
             if (shoe.id === id) {
                 if (value === 'increase') {
@@ -244,98 +245,97 @@ const cart_reducer = (state, action) => {
             }
         })
 
-        return { ...state, woman_cart: tempItem }
+        return { ...state, women_cart: tempItem }
     }
 
 
 
 
     if (action.type === 'EMPTY_CART') {
-        return { ...state, cart: [], woman_cart: [] }
+        return { ...state, cart: [], women_cart: [] }
     }
 
 
-    // if (action.type === 'DISPLAY_CART_ICON') {
+    if (action.type === 'DISPLAY_CART_ICON') {
 
-    //     const { count, amount } = state.cart.reduce((total, cartItem,) => {
+        const { count, amount } = state.cart.reduce((total, cartItem,) => {
 
+            return total
 
-    //         return total
-
-    //     }, {
-    //         count: 0,
-    //         amount: 0
-    //     })
-    //     return { ...state, count, amount }
-    // }
-
-
-
-
-    // if (action.type === 'CART_ITEMS_COUNT') {
-
-    //     const { items_count, amounts_count } = state.cart.reduce((total, item) => {
-
-    //         const { count, prices } = item
-
-    //         total.items_count += count
-    //         total.amounts_count += prices * count
-    //         return total
-
-    //     },
-    //         {
-    //             items_count: 0,
-    //             amounts_count: 0
-    //         })
-
-    //     return {
-    //         ...state, items_count, amounts_count
-    //     }
-    // }
+        }, {
+            count: 0,
+            amount: 0
+        })
+        return { ...state, count, amount }
+    }
 
 
 
 
-    // if (action.type === 'WOMEN_CART_ITEMS_COUNT') {
+    if (action.type === 'CART_ITEMS_COUNT') {
 
-    //     const { woman_items_count, woman_amounts_count } = state.woman_cart.reduce((total, item) => {
+        const { items_count, amounts_count } = state.cart.reduce((total, item) => {
 
-    //         const { count, prices } = item
+            const { count, prices } = item
 
-    //         total.woman_items_count += count
-    //         total.woman_amounts_count += prices * count
-    //         return total
+            total.items_count += count
+            total.amounts_count += prices * count
+            return total
 
-    //     }, {
-    //         woman_items_count: 0,
-    //         woman_amounts_count: 0
-    //     })
+        },
+            {
+                items_count: 0,
+                amounts_count: 0
+            })
 
-    //     return {
-    //         ...state, woman_items_count, woman_amounts_count
-    //     }
-    // }
+        return {
+            ...state, items_count, amounts_count
+        }
+    }
 
+
+
+
+    if (action.type === 'WOMEN_CART_ITEMS_COUNT') {
+
+        const { women_items_count, women_amounts_count } = state.women_cart.reduce((total, item) => {
+
+            const { count, prices } = item
+
+            total.women_items_count += count
+            total.women_amounts_count += prices * count
+            return total
+
+        }, {
+            women_items_count: 0,
+            women_amounts_count: 0
+        })
+
+        return {
+            ...state, women_items_count, women_amounts_count
+        }
+    }
 
 
 
 
 
-    // if (action.type === 'ADD_CARTS_TOGETHER') {
 
-    //     const { items_count, amounts_count,
-    //         woman_items_count, woman_amounts_count } = state
+    if (action.type === 'ADD_CARTS_TOGETHER') {
+
+        const { items_count, amounts_count,
+            women_items_count, women_amounts_count } = state
 
 
-    //     let both_carts_items_total = 0
-    //     let both_carts_amounts_total = 0
+        let both_carts_items_total = 0
+        let both_carts_amounts_total = 0
 
-    //     both_carts_items_total = items_count + woman_items_count
+        both_carts_items_total = items_count + women_items_count
 
-    //     both_carts_amounts_total = amounts_count + woman_amounts_count
+        both_carts_amounts_total = amounts_count + women_amounts_count
 
-    //     return { ...state, both_carts_items_total, both_carts_amounts_total }
-    // }
+        return { ...state, both_carts_items_total, both_carts_amounts_total }
+    }
 
 
 }

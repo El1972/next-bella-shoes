@@ -25,8 +25,8 @@ export const ContextAPI = ({ children }) => {
     const fetchProducts = async () => {
         dispatch({ type: 'LOADING' })
         try {
-            const response = await axios.get('https://mybellshoes.com/men.php')
-            const items = response.data
+            const response = await fetch('http://localhost:8888/men.php')
+            const items = await response.json()
             dispatch({ type: 'FETCH_PRODUCTS', payload: items })
         } catch (error) {
             dispatch({ type: 'GET_ERROR' })
@@ -44,8 +44,8 @@ export const ContextAPI = ({ children }) => {
     const womenfetchProducts = async () => {
         dispatch({ type: 'LOADING' })
         try {
-            const response = await axios.get('https://mybellshoes.com/women.php')
-            const women_items = response.data
+            const response = await fetch('http://localhost:8888/women.php')
+            const women_items = await response.json()
             dispatch({ type: 'WOMEN_FETCH_PRODUCTS', payload: women_items })
         } catch (error) {
             dispatch({ type: 'GET_WOMEN_ERROR' })

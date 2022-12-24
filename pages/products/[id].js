@@ -182,7 +182,7 @@ export const getStaticProps = async (context) => {
 
     const id = context.params.id
 
-    const response = await fetch(`https://mybellshoes.com/single_shoe.php/${id}`)
+    const response = await fetch(`http://localhost:8888/single_shoe.php/${id}`)
     const men_shoe = await response.json()
 
     return {
@@ -196,7 +196,7 @@ export const getStaticProps = async (context) => {
 
 
 export const getStaticPaths = async () => {
-    const get_paths = await fetch('https://mybellshoes.com/women.php')
+    const get_paths = await fetch('http://localhost:8888/men.php')
     const path = await get_paths.json()
 
     const paths = path.map((p) => {

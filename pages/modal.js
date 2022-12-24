@@ -7,10 +7,11 @@ import { useState } from 'react';
 
 
 
-
 const Modal = (props) => {
 
     const { sizes, addToCart } = useAddToCartContext();
+
+    console.log(sizes);
 
     const [setSize, setSetSize] = useState(sizes)
 
@@ -37,23 +38,11 @@ const Modal = (props) => {
                                     <div className={styles['inner-buttons-container']}>
 
                                         <div className={styles['modal-single-info-size-container']}>
-                                            <Link href={'.'}
-                                                className={styles['modal-single-info-size-button']}
-                                            >
-                                                <p className={styles['modal-single-info-size']}>
-                                                    Size
-                                                </p>
-                                            </Link>
+                                            <Link href={'.'} className={styles['modal-single-info-size-button']}><div className={styles['modal-single-info-size']}>Size</div></Link>
                                         </div>
 
                                         <div className={styles['modal-single-info-cart-container']}>
-                                            <Link href={'/products'} className={styles['modal-single-info-cart-button']}
-                                                onClick={() => addToCart(id, images, names, count, prices, stock, amount, setSize)}
-                                            >
-                                                <p className={styles['modal-single-info-cart']}>
-                                                    <BsHandbag className={styles['modal-cart-icon']} />Add To Cart
-                                                </p>
-                                            </Link>
+                                            <Link href={'/products'} className={styles['modal-single-info-cart-button']} onClick={() => addToCart(id, images, names, count, prices, stock, amount, setSize)}><div className={styles['modal-single-info-cart']}><BsHandbag className={styles['modal-cart-icon']} />Add To Cart</div></Link>
                                         </div>
                                     </div>
                                 </div>
@@ -64,8 +53,7 @@ const Modal = (props) => {
                                 {/* Second: Block Of Countries Buttons */}
                                 <div className={`${styles['countries-container']} ${styles['clearfix']}`}>
                                     <div className={styles['inner-countries-container']}>
-                                        {/* <button onClick={() => coordinate(setSize, 'uk')}>uk</button> */}
-                                        {/* <button onClick={() => coordinate('eu')}>eu</button> */}
+
                                     </div>
                                 </div>
                                 {/* End Of Second: Block Of Countries Buttons */}
@@ -112,12 +100,7 @@ const Modal = (props) => {
                                 <div className={`${styles['what-go-home-container']} ${styles['clearfix']}`}>
                                     <div className={styles['inner-what-go-home-container']}>
 
-                                        <Link href={'/'} className={styles['go-home-sentence-button']}>
-                                            <p className={styles['go-home-sentence']}>
-                                                <FaHome className={styles['go-home']} />
-                                                Go Back
-                                            </p>
-                                        </Link>
+                                        <Link href={'/'} className={styles['go-home-sentence-button']}><div className={styles['go-home-sentence']}><FaHome className={styles['go-home']} />Go Back</div></Link>
 
                                     </div>
                                 </div>
@@ -133,8 +116,13 @@ const Modal = (props) => {
 
                 </div>
             </div>
-        </div >
+        </div>
     )
 }
 
 export default Modal
+
+
+
+{/* <button onClick={() => coordinate(setSize, 'uk')}>uk</button> */ }
+{/* <button onClick={() => coordinate('eu')}>eu</button> */ }

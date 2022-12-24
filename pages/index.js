@@ -9,7 +9,6 @@ import { useFiltersContext } from '../contexts/FiltersContext';
 
 
 
-
 const Home = () => {
 
   let { filtered_items } = useFiltersContext();
@@ -24,7 +23,7 @@ const Home = () => {
       <div className={styles['master-wrapper']}>
         <div className={styles['wrapper']}>
           <div className={styles['sub-wrapper']}>
-            {/* <Header /> */}
+
 
 
             <div>
@@ -41,7 +40,7 @@ const Home = () => {
                 </div>
               </div>
               <Hero />
-              <div className={styles['general-wrapper clearfix']}>
+              <div className={`${styles['general-wrapper']} ${styles['clearfix']}`}>
                 <Sidebar />
                 {
                   filtered_items.map((i, index) => {
@@ -84,7 +83,6 @@ const Home = () => {
           </div>
         </div>
       </div>
-      {/* <Footer /> */}
     </div>
   )
 }
