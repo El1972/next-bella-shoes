@@ -97,7 +97,7 @@ export const AddToCartProvider = ({ children }) => {
     }, [state.cart])
 
 
-    // useRef() - will prevent re-rendering
+    // useRef() - will prevent re-rendering and will persist the data
     const initialRender = useRef(true);
 
 
