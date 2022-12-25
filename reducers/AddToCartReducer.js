@@ -32,7 +32,6 @@ const cart_reducer = (state, action) => {
 
         const { id, images, names, count, prices, stock, amount, sizes } = action.payload; // destructuring from: action.payload
 
-
         let { us, uk, eu } = sizes
 
         const t = [];
@@ -44,14 +43,12 @@ const cart_reducer = (state, action) => {
 
         let [shoeSize] = result
 
-        console.log(state);
-
         let tempObj = state.cart.find((c) => {
-            return c.id === id
+            return c.id === id + sizes.us
         })
         if (tempObj) {
             const tempUnits = state.cart.map((c) => {
-                if (c.id === id) {
+                if (c.id === id + sizes.us) {
                     let renewedCount = parseInt(c.count) + parseInt(count)
                     if (renewedCount > c.stock) {
                         renewedCount = c.stock
@@ -64,7 +61,7 @@ const cart_reducer = (state, action) => {
             return { ...state, cart: tempUnits }
         } else {
             const newObj = {
-                id: id,
+                id: id + sizes.us,
                 names,
                 images,
                 size: shoeSize,
@@ -90,8 +87,6 @@ const cart_reducer = (state, action) => {
     if (action.type === 'WOMEN_ADD_TO_CART') {
         const { id, images, names, count, prices, stock, amount, sizes } = action.payload; // destructuring from: action.payload
 
-        console.log(id, images, names, count, prices, stock, amount, sizes);
-
         let { us, uk, eu } = sizes
 
         const t = [];
@@ -104,12 +99,12 @@ const cart_reducer = (state, action) => {
         let [shoeSize] = result
 
         const tempObj = state.women_cart.find((c) => {
-            return c.id === id
+            return c.id === id + sizes.us
         })
 
         if (tempObj) {
             const tempUnits = state.women_cart.map((c) => {
-                if (c.id === id) {
+                if (c.id === id + sizes.us) {
                     let renewedCount = parseInt(c.count) + parseInt(count)
                     if (renewedCount > c.stock) {
                         renewedCount = c.stock
@@ -122,7 +117,7 @@ const cart_reducer = (state, action) => {
             return { ...state, women_cart: tempUnits }
         } else {
             const newObj = {
-                id: id,
+                id: id + sizes.us,
                 names,
                 images,
                 size: shoeSize,
@@ -318,9 +313,6 @@ const cart_reducer = (state, action) => {
 
 
 
-
-
-
     if (action.type === 'ADD_CARTS_TOGETHER') {
 
         const { items_count, amounts_count,
@@ -341,4 +333,10 @@ const cart_reducer = (state, action) => {
 }
 
 export default cart_reducer
+
+
+
+
+
+
 

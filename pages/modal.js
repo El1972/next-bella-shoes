@@ -11,8 +11,6 @@ const Modal = (props) => {
 
     const { sizes, addToCart } = useAddToCartContext();
 
-    console.log(sizes);
-
     const [setSize, setSetSize] = useState(sizes)
 
     const { id, images, names, count, prices, stock, amount } = props

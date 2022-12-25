@@ -64,7 +64,6 @@ const Products = () => {
                         example on counter - & + buttons, they only increment
                         and decrement for that particular component */}
                             {cart.map((c) => {
-                                console.log(c);
                                 return (
                                     <div key={c.id}>
                                         <Cart key={c.id} {...c} />

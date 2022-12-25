@@ -44,7 +44,7 @@ const About = () => {
                                         Now imagine that in order to have them, there is no need to spend
                                         hours wandering the shops, nor to pay more than you want ...
                                         You no longer have to fantasize! Turn your shoes dream into reality
-                                        with Girotti - shoes that conform to your every wish!</p>
+                                        with Bella - shoes that conform to your every wish!</p>
                                 </div>
                             </div>
                         </div>

@@ -22,7 +22,6 @@ const mainState = {
     amount: 50
 }
 
-console.log(mainState);
 
 const AddToCartContext = createContext()
 
@@ -47,7 +46,6 @@ export const AddToCartProvider = ({ children }) => {
 
     const addToCart = (id, images, names, count, prices, stock, amount, sizes) => {
         dispatch({ type: 'ADD_TO_CART', payload: { id, images, names, count, prices, stock, amount, sizes } })
-        console.log(id, images, names, count, prices, stock, amount, sizes);
     }
 
 
@@ -98,34 +96,45 @@ export const AddToCartProvider = ({ children }) => {
         displayCartIcon()
     }, [state.cart])
 
-
-    useEffect(() => {
-        dispatch({ type: 'CART_ITEMS_COUNT' })
-        localStorage.setItem('cart', JSON.stringify(state.cart))
-    }, [state.cart, state.women_cart])
-
-
-    useEffect(() => {
-        dispatch({ type: 'WOMEN_CART_ITEMS_COUNT' })
-        dispatch({ type: 'ADD_CARTS_TOGETHER' })
-        localStorage.setItem('women_cart', JSON.stringify(state.women_cart))
-    }, [state.cart, state.women_cart])
-
+    const initialRender = useRef(true);
 
     const learn = useMemo(() => {
         return { state, dispatch }
     }, [state, dispatch])
 
-    const initialRender = useRef(true);
+
+
+    useEffect(() => {
+
+        dispatch({ type: 'CART_ITEMS_COUNT' })
+
+    }, [state.cart, state.women_cart])
+
+
+
+    useEffect(() => {
+
+        dispatch({ type: 'WOMEN_CART_ITEMS_COUNT' })
+        dispatch({ type: 'ADD_CARTS_TOGETHER' })
+
+    }, [state.cart, state.women_cart])
+
+
+
 
     useEffect(() => {
         const item = (JSON.parse(localStorage.getItem('cart')))
-        console.log(item);
-        if (item) {
+        const women_item = (JSON.parse(localStorage.getItem('women_cart')))
+
+        if (item, women_item) {
             dispatch({
                 type: 'SET_CART',
                 payload: item
-            })
+            }),
+                dispatch({
+                    type: 'SET_WOMEN_CART',
+                    payload: women_item
+                })
         }
     }, [])
 
@@ -136,29 +145,9 @@ export const AddToCartProvider = ({ children }) => {
             return
         }
         localStorage.setItem('cart', JSON.stringify(state.cart))
-    }, [state.cart])
-
-
-
-    useEffect(() => {
-        const item = (JSON.parse(localStorage.getItem('women_cart')))
-        console.log(item);
-        if (item) {
-            dispatch({
-                type: 'SET_WOMEN_CART',
-                payload: item
-            })
-        }
-    }, [])
-
-
-    useEffect(() => {
-        if (initialRender.current) {
-            initialRender.current = false;
-            return
-        }
         localStorage.setItem('women_cart', JSON.stringify(state.women_cart))
-    }, [state.women_cart])
+    }, [state.cart, state.women_cart])
+
 
 
     return (

@@ -1,6 +1,7 @@
 import styles from '../styles/Home.module.css'
 import { FaChevronDown } from 'react-icons/fa';
 import Link from 'next/link';
+import Hero from '../components/Hero'
 import { motion, AnimatePresence } from 'framer-motion';
 import WomenSidebar from '../components/WomenSidebar';
 import { useFiltersContext } from '../contexts/FiltersContext';
@@ -27,6 +28,7 @@ const Women = () => {
                         Women&apos;s Shoes</p>
                 </div>
             </div>
+            <Hero />
             <div className="general-wrapper clearfix">
                 <WomenSidebar />
                 {
