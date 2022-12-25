@@ -5,9 +5,9 @@ import WomenCountButtons from './WomenCountButtons'
 
 const WomenCart = ({ id, names, images, prices, count, size }) => {
 
-    const { woman_cart, emptyCart, adjustWomenCart, deleteWomanProduct } = useAddToCartContext();
+    const { women_cart, emptyCart, adjustWomenCart, deleteWomanProduct } = useAddToCartContext();
 
-    if (woman_cart.length < 1) {
+    if (women_cart.length < 1) {
         return <h3>Your Shopping Cart Is Empty</h3>
     }
 
@@ -53,7 +53,7 @@ const WomenCart = ({ id, names, images, prices, count, size }) => {
                         </div>
                         <div className="delete-section">
                             <div className="inner-delete-section">
-                                <Link to={'.'} onClick={() => deleteWomanProduct(id)}>
+                                <Link href={'./products'} onClick={() => deleteWomanProduct(id)}>
                                     <WomanItemDelete />
                                 </Link>
                             </div>

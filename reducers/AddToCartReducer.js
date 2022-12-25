@@ -88,11 +88,11 @@ const cart_reducer = (state, action) => {
 
 
     if (action.type === 'WOMEN_ADD_TO_CART') {
-        const { id, images, names, count, prices, stock, amount, size } = action.payload; // destructuring from: action.payload
+        const { id, images, names, count, prices, stock, amount, sizes } = action.payload; // destructuring from: action.payload
 
-        console.log(id, images, names, count, prices, stock, amount, size);
+        console.log(id, images, names, count, prices, stock, amount, sizes);
 
-        let { us, uk, eu } = size
+        let { us, uk, eu } = sizes
 
         const t = [];
         t.push(us, uk, eu)

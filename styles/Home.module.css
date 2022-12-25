@@ -492,6 +492,14 @@ ul .nav-links {
   font-family: 'md_primer_testregular';
 }
 
+.nav-links {
+  list-style-type: none;
+}
+
+.nav-links .react-link-home {
+  list-style-type: none;
+}
+
 li.first {
   padding-left: 0px;
   margin-left: 0px;
@@ -501,31 +509,26 @@ li.last {
   padding-right: 46px;
 }
 
-/* a {
+.header-a {
   min-height: 40px;
   line-height: 40px;
   font-size: 18px;
-} */
-
-/* a {
   list-style-type: none;
   text-decoration: none;
   color: #444444;
-} */
+}
 
-/* i {
-  vertical-align: middle;
-} */
 
 li.hommer {
   padding: 0px;
   margin-right: 0px;
 }
 
-i.home-logo {
+.home-logo {
   line-height: 20px;
   height: 20px;
   font-size: 18px;
+  vertical-align: middle;
 }
 
 .chevron {

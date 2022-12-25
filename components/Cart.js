@@ -52,7 +52,7 @@ const Cart = ({ id, names, images, count, size, prices }) => {
                         </div>
                         <div className="delete-section">
                             <div className="inner-delete-section">
-                                <Link href={'.'} onClick={() => deleteProduct(id)}>
+                                <Link href={'./products'} onClick={() => deleteProduct(id)}>
                                     <ItemDelete />
                                 </Link>
                             </div>

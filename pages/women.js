@@ -15,45 +15,45 @@ const Women = () => {
 
     return (
         <div>
-            <div className={styles['main-header-wrapper']}>
-                <div className={styles['inner-main-header-wrapper']}>
-                    <div className={styles['header-container']}>
-                        <h1 className={styles['about-header']}>Women&apos;s Shoes</h1>
+            <div className='main-header-wrapper'>
+                <div className='inner-main-header-wrapper'>
+                    <div className='header-container'>
+                        <h1 className='about-header'>Women&apos;s Shoes</h1>
                     </div>
                 </div>
-                <div className={styles['sub-header-container']}>
-                    <p className={styles['sub-header-itself']}>
-                        Home<FaChevronDown className={styles['chevron-right']} />
+                <div className='sub-header-container'>
+                    <p className='sub-header-itself'>
+                        Home<FaChevronDown className='chevron-right' />
                         Women&apos;s Shoes</p>
                 </div>
             </div>
-            <div className={`${styles.generalWrapper} ${styles.clearfix}`}>
+            <div className="general-wrapper clearfix">
                 <WomenSidebar />
                 {
                     women_filtered_items.map((i, index) => {
                         const { id, images, bestsellers, names, prices } = i
                         return (
-                            <div className={styles['image-container']} key={index}>
-                                <div className={styles['image-width']} key={id}>
-                                    <Link href={`product/${i.id}`}>
+                            <div className='image-container' key={index}>
+                                <div className='image-width'>
+                                    <Link href={`products/women/${id}`}>
                                         <AnimatePresence>
                                             <motion.div
                                                 initial={{ opacity: 0 }} animate={{ opacity: 1 }}
                                                 exit={{ opacity: 0 }}
                                                 whileHover={{ scale: 1.2 }}
-                                                className={styles['image-float']}>
-                                                <div className={styles['image-properties']}>
-                                                    <div className={styles['shoes-images']}>
-                                                        <div className={styles['shoe-container']}>
+                                                className='image-float'>
+                                                <div className='image-properties'>
+                                                    <div className='shoes-images'>
+                                                        <div className='shoe-container'>
                                                             <picture>
                                                                 <img src={`../../images/${images}`}
                                                                     alt="" className={styles['shoe-one']} />
                                                             </picture>
                                                         </div>
-                                                        <div className={styles['image-info-container']}>
-                                                            <p className={styles['image-bestsellers']}>{bestsellers}</p>
-                                                            <p className={styles['image-names']}>{names}</p>
-                                                            <p className={styles['image-prices']}>${prices}</p>
+                                                        <div className='image-info-container'>
+                                                            <p className='image-bestsellers'>{bestsellers}</p>
+                                                            <p className='image-names'>{names}</p>
+                                                            <p className='image-prices'>${prices}</p>
                                                         </div>
                                                     </div>
                                                 </div>

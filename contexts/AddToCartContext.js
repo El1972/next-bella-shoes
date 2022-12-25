@@ -51,7 +51,7 @@ export const AddToCartProvider = ({ children }) => {
     }
 
 
-    const womanAddToCart = (id, images, names, count, prices, stock, amount, sizes) => {
+    const womenAddToCart = (id, images, names, count, prices, stock, amount, sizes) => {
         dispatch({ type: 'WOMEN_ADD_TO_CART', payload: { id, images, names, count, prices, stock, amount, sizes } })
     }
 
@@ -168,7 +168,7 @@ export const AddToCartProvider = ({ children }) => {
             fetchModalSizes,
             addToCart,
             adjustWomenCart,
-            womanAddToCart,
+            womenAddToCart,
             deleteProduct,
             deleteWomanProduct,
             adjustCart,
