@@ -96,7 +96,11 @@ export const AddToCartProvider = ({ children }) => {
         displayCartIcon()
     }, [state.cart])
 
+
+    // useRef() - will prevent re-rendering
     const initialRender = useRef(true);
+
+
 
     const learn = useMemo(() => {
         return { state, dispatch }
