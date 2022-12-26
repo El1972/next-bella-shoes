@@ -13,7 +13,7 @@ function MyApp({ Component, pageProps }) {
     <>
       <div className="top-bar-container">
         <div className="inner-top-bar-container">
-          <p className="top-info">FREE delivery, FREE returns and FREE remake (if shoes don't fit)</p>
+          <p className="top-info">FREE delivery, FREE returns and FREE remake (if shoes don&apos;t fit)</p>
         </div>
       </div>
       <div className="master-wrapper">
